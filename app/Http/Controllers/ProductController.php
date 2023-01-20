@@ -21,16 +21,26 @@ class ProductController extends Controller
     {
         // dump($requests->name);
 
+
         $products = DB::table("products");
 
-        $products == $products
-            ->where('name', 'like', '%' . $requests->name . '%');
+            if($requests->name){
+                $products = $products
+                ->where('name', 'like', '%' .$requests->name. '%');
+            }
 
-        $products == $products
-            ->where('price', 'like', '%' . $requests->price . '%');
 
-        $products == $products
-            ->where('status', 'like', '%' . $requests->status . '%');
+             if($requests->price){
+                $products = $products
+                ->where('price', $requests->price);
+            }
+
+            if (($requests->status == 1 || $requests->status == 0) && isset($requests->status) ){
+                $products = $products
+                ->where('status', $requests->status);
+            }
+
+
 
         $data['product'] = $products->get();
 
@@ -114,6 +124,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required'
+
         ]);
         //  dd($product);
         $product->update($request->all());

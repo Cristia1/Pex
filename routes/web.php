@@ -16,4 +16,3 @@ use Illuminate\Http\Request;
 */
 //uite aici ai rutele, nu ai treaba cu ele
 Route::resource('products', ProductController::class);
-Route::get('importpdfs/{battery}', 'YourController@filter');

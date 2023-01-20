@@ -44,34 +44,33 @@
             </div>
 
             <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Password:</strong>
-                    <input type="password" name="password" class="form-control" value="{{ $product->password }}"
-                        placeholder="Password">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Password:</strong>
+                        <input type="password" name="password" class="form-control" value="{{ $product->password }}"
+                            placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Price:</strong>
+                            <input type="price" name="price" class="form-control" value="{{ $product->price }}"
+                                placeholder="Price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <label><input @if($product->status == 1) checked @endif type="radio" name="status" value="1">Activ</label>
+                    <label><input @if($product->status == 0) checked @endif type="radio" name="status" value="0">Inactiv</label>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
-            <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="price" name="price" class="form-control" value="{{ $product->price }}"
-                        placeholder="Price">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12" >
-
-            <label><input type="radio" class="form-group"  name="status" id="activ" value="1" >Activ</label>
-            <label><input type="radio" class="form-group" name="status" value="0" >Inactiv</label>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-      </div>
         </div>
     </form>
 @endsection
