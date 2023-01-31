@@ -57,7 +57,7 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>mage</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Details</th>
             <th>Password</th>
@@ -68,7 +68,8 @@
         @foreach ($product as $product)
             <tr @if ($product->status == 1) class="statusInactiv" @endif>
                 <td>{{ ++$i }}</td>
-                    <td image src="/images/{{ $product->image }}" with="100px">{{ $product->image }}</td>
+                <th><img src="{{ asset('images/'. $product->image) }}" >
+                    {{-- <td> {{ ('images/'. $product->image) }} </td> --}}
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->details }}</td>
                     <td>{{ $product->password }}</td>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('password');
             $table->text('price');
             $table->text('status');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

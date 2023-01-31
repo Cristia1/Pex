@@ -20,8 +20,7 @@ use Illuminate\Http\Request;
 //uite aici ai rutele, nu ai treaba cu ele
 Route::resource('products', ProductController::class);
 
-// Route::post('/shop', [ProductController::class, 'index']);
+Route::get('/shop', [ProductController::class, 'shop']);
 
-Route::get('shop/', [ProductController::class, 'shop']);
 
 

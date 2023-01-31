@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 use Illuminate\Pagination\Paginator;
-// use Image,File;
+use Image, File;
 
 
 class ProductController extends Controller
@@ -26,18 +26,18 @@ class ProductController extends Controller
 
         $products = DB::table("products");
 
-        if ($requests->name) {
+        if($requests->name) {
             $products = $products
-                ->where('name', 'like', '%' . $requests->name . '%');
+                ->where('name', 'like', '%' .$requests->name. '%');
         }
 
 
-        if ($requests->price) {
+        if($requests->price) {
             $products = $products
                 ->where('price', $requests->price);
         }
 
-        if (($requests->status == 1 || $requests->status == 0) && isset($requests->status)) {
+        if(($requests->status == 1 || $requests->status == 0) && isset($requests->status)) {
             $products = $products
                 ->where('status', $requests->status);
         }
@@ -84,17 +84,15 @@ class ProductController extends Controller
             'password' => 'required',
             'price' => 'required',
             // 'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
-
-
         ]);
 
         $input = $request->all();
 
-        if ($image = $request->file('images')) {
-            $destinationPath = 'images/';
+        if($image = $request->file('image')) {
+            $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['images'] = "$profileImage";
+            $input['image'] = "$profileImage";
         }
 
         Product::create($input);

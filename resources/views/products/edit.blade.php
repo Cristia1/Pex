@@ -62,13 +62,19 @@
                     </div>
                 </div>
 
-                <label class="block mb-4">
+                <div class="form-group">
+                    <strong>Image:</strong>
+                    <input type="file" name="image" class="form-control" placeholder="image">
+                    <img src="/images/{{ $product->image }}" width="300px">
+                </div>
+
+                {{-- <label>
                     <span class="sr-only">Choose File</span>
-                    <input type="file" name="image" placeholder="Image">
+                    <input type="file" name="image" placeholder="Image" value="{{ $product->image }}">
                     @error('image')
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                     @enderror
-                </label>
+                </label> --}}
 
 
 

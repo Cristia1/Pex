@@ -11,8 +11,6 @@
         <div id="details">&#9195;Details</div>
         <div class="rel"></div>
         <div style = "position:relative; left: 1px; top:-20px;"> &#9195;&#11088;&#127802;</div>
-
-
         </div>
     </ul>
 @endforeach
