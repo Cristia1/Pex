@@ -62,6 +62,16 @@
                     </div>
                 </div>
 
+                <label class="block mb-4">
+                    <span class="sr-only">Choose File</span>
+                    <input type="file" name="image" placeholder="Image">
+                    @error('image')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </label>
+
+
+
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <label><input @if($product->status == 1) checked @endif type="radio" name="status" value="1">Activ</label>
                     <label><input @if($product->status == 0) checked @endif type="radio" name="status" value="0">Inactiv</label>

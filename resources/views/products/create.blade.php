@@ -51,13 +51,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price:</strong>
-                    <input type="number" class="form-control" name="price" placeholder="Price">
+                    <input type="price" class="form-control" name="price" placeholder="Price">
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+                <label class="block">
+                    <span class="form-group">Choose File</span>
+                    <input type="file" name="image"
+                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                </label>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
         </div>
     </form>
 @endsection

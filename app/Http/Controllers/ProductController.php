@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 use Illuminate\Pagination\Paginator;
+// use Image,File;
+
 
 class ProductController extends Controller
 {
@@ -24,21 +26,21 @@ class ProductController extends Controller
 
         $products = DB::table("products");
 
-            if($requests->name){
-                $products = $products
-                ->where('name', 'like', '%' .$requests->name. '%');
-            }
+        if ($requests->name) {
+            $products = $products
+                ->where('name', 'like', '%' . $requests->name . '%');
+        }
 
 
-             if($requests->price){
-                $products = $products
+        if ($requests->price) {
+            $products = $products
                 ->where('price', $requests->price);
-            }
+        }
 
-            if (($requests->status == 1 || $requests->status == 0) && isset($requests->status) ){
-                $products = $products
+        if (($requests->status == 1 || $requests->status == 0) && isset($requests->status)) {
+            $products = $products
                 ->where('status', $requests->status);
-            }
+        }
 
 
 
@@ -64,6 +66,7 @@ class ProductController extends Controller
     public function create()
     {
 
+
         return view('products.create');
     }
 
@@ -75,14 +78,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required',
             'details' => 'required',
             'password' => 'required',
             'price' => 'required',
+            // 'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+
+
         ]);
 
-        Product::create($request->all());
+        $input = $request->all();
+
+        if ($image = $request->file('images')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['images'] = "$profileImage";
+        }
+
+        Product::create($input);
 
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
@@ -123,7 +138,7 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'details' => 'required'
+            'details' => 'required',
 
         ]);
         //  dd($product);
@@ -146,6 +161,14 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
+    }
+
+    public function shop()
+    {
+        $data['products'] = DB::table('products')->get();
+        // dd('test');
+
+        return view('shops.index', $data);
     }
 
 

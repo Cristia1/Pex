@@ -58,4 +58,12 @@
             </div>
         </div>
     </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Image:</strong>
+            <imag src="/images/{{ $product->image }}" with="500px">
+        </div>
+    </div>
+    </div>
 @endsection

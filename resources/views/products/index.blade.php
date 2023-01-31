@@ -57,6 +57,7 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
+            <th>mage</th>
             <th>Name</th>
             <th>Details</th>
             <th>Password</th>
@@ -67,28 +68,27 @@
         @foreach ($product as $product)
             <tr @if ($product->status == 1) class="statusInactiv" @endif>
                 <td>{{ ++$i }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->details }}</td>
-                <td>{{ $product->password }}</td>
-                <td>{{ $product->price }}</td>
-                <td>{{ $product->status }}</td>
-                <th>
+                    <td image src="/images/{{ $product->image }}" with="100px">{{ $product->image }}</td>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->details }}</td>
+                    <td>{{ $product->password }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->status }}</td>
+                    <th>
 
-                    <form class="form-group" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                        <a class="btn btn-info" id="show" href="{{ route('products.show', $product->id) }}">Show</a>
-                        <a class="btn btn-primary" id="edit"
-                            href="{{ route('products.edit', $product->id) }}">Edit</a>
-                        @csrf
-                        @method('DELETE')
+                        <form class="form-group" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                            <a class="btn btn-info" id="show" href="{{ route('products.show', $product->id) }}">Show</a>
+                            <a class="btn btn-primary" id="edit"href="{{ route('products.edit', $product->id) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                    </td>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        </td>
             </tr>
         @endforeach
     </table>
 
-    {{-- {!! $products->links() !!} --}}
 @endsection
 
 <style>
