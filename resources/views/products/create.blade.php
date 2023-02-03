@@ -56,8 +56,8 @@
         </div>
 
         <div class="form-group">
-            <label for="image">Choose Image:</label>
-            <input type="file" name="image" id="image" class="form-control">
+            <label for="image" >Choose Image:</label>
+            <input type="file" name="image" id="image" class="form-control style="width: 100px; height: 100px;"">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 

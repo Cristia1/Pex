@@ -68,8 +68,7 @@
         @foreach ($product as $product)
             <tr @if ($product->status == 1) class="statusInactiv" @endif>
                 <td>{{ ++$i }}</td>
-                <th><img src="{{ asset('images/'. $product->image) }}" >
-                    {{-- <td> {{ ('images/'. $product->image) }} </td> --}}
+                <th><img src="{{ asset('images/'. $product->image) }}" style="width: 50px">
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->details }}</td>
                     <td>{{ $product->password }}</td>

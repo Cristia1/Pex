@@ -1,59 +1,72 @@
-@foreach ($products as $product)
-    <ul>
-        <li class="name">{{ $product->name }}</li>
-        <div>
-            <image src="/images/{{ $product->image }}" with="100px">
-        </div>
+    <div class="container">
+        @foreach ($products as $product)
+            <div class="product">
+                <img src="/images/{{ $product->image }}" class="product-image" style="width: 180px">
+                <p class="product-name">{{ $product->name }}</p>
+                <p class="product-price">{{ $product->price }}</p>
+                <div class="product-details">&#9195;Details</div>
+                <div class="rel"></div>
+                <div class="emoji">&#128707;&#127804;&#127802;</div>
+            </div>
+        @endforeach
+    </div>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 255px;
 
-        <div>
-            <li class="pris">{{ $product->price }}</li>
-        </div>
-        <div id="details">&#9195;Details</div>
-        <div class="rel"></div>
-        <div style = "position:relative; left: 1px; top:-20px;"> &#9195;&#11088;&#127802;</div>
-        </div>
-    </ul>
-@endforeach
-</div>
+        }
 
-<style>
-    ul {
-        float: right;
-        margin-right: +10%;
-        padding: 5;
-        border-radius: 16px;
-        background: #d2d2cc37;
-        height: 220px;
-        width: 255px;
-    }
+        .product {
+            width: 259px;
+            margin: 13px;
+            text-align: center;
+            margin-top: -25px;
+        }
 
-    .name {
-        color: rgb(226, 19, 50);
-        float: right;
-        margin-right: 130px;
-        text-underline-position:
-            padding: 10;
-        height: 20px;
-    }
+        .product-image {
+            width: 70px;
+            background-color: #cccccc54;
+            height: 160px;
+            padding: 48px;
+            border-radius: 29px;
+        }
 
-    .pris {
-        color: rgb(243, 58, 160);
-        float: right;
-        margin-right: 128px;
-        text-underline-position: 100px padding: 10;
-        height: 200px;
-        margin-top: 29px;
-    }
+        .product-name {
+            font-weight: bold;
+            color: red;
+            margin-top: 36px;
+            position: relative;
+            top: -270px;
+        }
 
-    #details {
-        background-color: rgba(214, 216, 219, 0.257);
-        width: 62px;
-        position: relative;
-        left: 186px;
-        top: +81px
-    }
-    div.rel {
-        border-bottom: rgba(221, 223, 211, 0.224) 19px solid;
-        padding: 30px;/* SUS si  jos in jos numarul coboara */
-    }
-</style>
+        div.rel {
+            border-bottom: rgba(221, 223, 211, 0.499) 28px solid;
+            padding: 30px;
+            margin-top: -180px;
+            color: red;
+            width: 210px;
+            height: 1px;
+        }
+
+        .product-price {
+            color: red;
+            transform: translate(1px, 0);
+            position: relative;
+            top: -105px;
+        }
+
+        .product-details {
+            position: relative;
+            top: -94px;
+            left: 30%;
+            transform: translate(20px, 0);
+        }
+
+        .emoji {
+            position: relative;
+            left: -90px;
+            top: -23px;
+        }
+    </style>
