@@ -137,9 +137,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required',
-
         ]);
-        //  dd($product);
+
         $product->update($request->all());
 
         return redirect()->route('products.index')

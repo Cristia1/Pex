@@ -61,26 +61,21 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <strong>Image:</strong>
-                    <input type="file" name="image" class="form-control" placeholder="image">
-                    <img src="/images/{{ $product->image }}" width="300px">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <strong>Image:</strong>
+                            <input type="file" name="image" class="form-control" placeholder="image">
+                            <img src="/images/{{ $product->image }}" width="300px">
+                        </div>
+                    </div>
                 </div>
 
-                {{-- <label>
-                    <span class="sr-only">Choose File</span>
-                    <input type="file" name="image" placeholder="Image" value="{{ $product->image }}">
-                    @error('image')
-                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                    @enderror
-                </label> --}}
-
-
-
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <label><input @if($product->status == 1) checked @endif type="radio" name="status" value="1">Activ</label>
-                    <label><input @if($product->status == 0) checked @endif type="radio" name="status" value="0">Inactiv</label>
+                    <label><input @if ($product->status == 1) checked @endif type="radio" name="status"
+                            value="1">Activ</label>
+                    <label><input @if ($product->status == 0) checked @endif type="radio" name="status"
+                            value="0">Inactiv</label>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
