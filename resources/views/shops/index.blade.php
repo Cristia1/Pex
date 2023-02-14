@@ -1,12 +1,21 @@
     <div class="container">
         @foreach ($products as $product)
             <div class="product">
+
                 <img src="/images/{{ $product->image }}" class="product-image" style="width: 180px">
+
                 <p class="product-name">{{ $product->name }}</p>
+
                 <p class="product-price">{{ $product->price }}</p>
-                <div class="product-details">&#9195;Details</div>
+
+                <div>
+                    <a href="{{ route('details', $product->id) }}" class="product-details">&#9195;Details</a>
+                </div>
+
                 <div class="rel"></div>
+
                 <div class="emoji">&#128707;&#127804;&#127802;</div>
+
             </div>
         @endforeach
     </div>

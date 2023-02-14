@@ -60,18 +60,22 @@
             <th>Image</th>
             <th>Name</th>
             <th>Details</th>
-            <th>Password</th>
             <th>Price</th>
             <th>Status</th>
             <th width="280px">Action</th>
         </tr>
+        @php
+        $i = 0;
+        @endphp
         @foreach ($product as $product)
             <tr @if ($product->status == 1) class="statusInactiv" @endif>
                 <td>{{ ++$i }}</td>
-                <th><img src="{{ asset('images/'. $product->image) }}" style="width: 50px">
+                <th><img src="{{ asset('images/'. $product->image) }}" style="width: 100px">
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->details }}</td>
-                    <td>{{ $product->password }}</td>
+                    
+                    <td title="{{ $product->details }}">{{ strlen($product->details)
+                     > 30 ? substr($product->details, 0, 30) . "..." : $product->details }}</td>
+
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->status }}</td>
                     <th>

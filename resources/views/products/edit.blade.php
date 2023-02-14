@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('products.update', $product->id) }}" method="POST">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -46,42 +46,32 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Password:</strong>
-                        <input type="password" name="password" class="form-control" value="{{ $product->password }}"
-                            placeholder="Password">
+                        <strong>Price:</strong>
+                        <input type="price" name="price" class="form-control" value="{{ $product->price }}"
+                            placeholder="Price">
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Price:</strong>
-                            <input type="price" name="price" class="form-control" value="{{ $product->price }}"
-                                placeholder="Price">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <strong>Image:</strong>
-                            <input type="file" name="image" class="form-control" placeholder="image">
-                            <img src="/images/{{ $product->image }}" width="300px">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <label><input @if ($product->status == 1) checked @endif type="radio" name="status"
-                            value="1">Activ</label>
-                    <label><input @if ($product->status == 0) checked @endif type="radio" name="status"
-                            value="0">Inactiv</label>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Image:</strong>
+                    <input type="file" name="image" class="form-control" placeholder="Image">
+                    <img src="/images/{{ $product->image }}" width="500px">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <label><input @if ($product->status == 1) checked @endif type="radio" name="status"
+                        value="1">Activ</label>
+                <label><input @if ($product->status == 0) checked @endif type="radio" name="status"
+                        value="0">Inactiv</label>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
         </div>
     </form>
 @endsection

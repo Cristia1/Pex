@@ -22,5 +22,4 @@ Route::resource('products', ProductController::class);
 
 Route::get('/shop', [ProductController::class, 'shop']);
 
-
-
+Route::get('/details/{id}', [ProductController::class, 'details'])->name('details');

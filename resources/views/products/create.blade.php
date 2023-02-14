@@ -43,21 +43,15 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Password:</strong>
-                    <textarea type="password" class="form-control" name="password" placeholder="Password"></textarea>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
                     <strong>Price:</strong>
                     <input type="number" class="form-control" name="price" placeholder="Price">
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="image">Choose Image:</label>
-                <input type="file" name="image" id="image" class="form-control">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <label for="image">Choose Image:</label>
+                    <input type="file" name="image" id="image" class="form-control" placeholder="image">
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
 

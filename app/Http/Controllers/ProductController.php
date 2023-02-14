@@ -19,13 +19,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $requests)
     {
-        // dump($requests->name);
 
-
-        $products = DB::table("products");
-
+        $products = Product::paginate(10);
         if ($requests->name) {
             $products = $products
                 ->where('name', 'like', '%' . $requests->name . '%');
@@ -42,19 +40,19 @@ class ProductController extends Controller
                 ->where('status', $requests->status);
         }
 
+        $data['product'] = $products;
 
 
-        $data['product'] = $products->get();
-
-        // dd($products);
         $data['filter_products'] = DB::table('products')->get();
 
         $data['filter_product'] = DB::table('products')->get();
 
-        // dump($request->all());
+   
 
-        return view('products.index', $data)
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['products'] = DB::table("products")->paginate(20);
+
+        return view('products.index', $data);
+        // ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -81,7 +79,6 @@ class ProductController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'details' => 'required',
-            'password' => 'required',
             'price' => 'required',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
@@ -111,7 +108,6 @@ class ProductController extends Controller
     {
         return view('products.show', compact('product'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -120,7 +116,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // dd($product);
+
         return view('products.edit', compact('product'));
     }
 
@@ -139,7 +135,16 @@ class ProductController extends Controller
             'details' => 'required',
         ]);
 
-        $product->update($request->all());
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        $product->update($input);
 
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully');
@@ -167,4 +172,13 @@ class ProductController extends Controller
 
         return view('shops.index', $data);
     }
+
+    public function details($id)
+    {
+        $product = Product::find($id);
+
+        return view('shops.details', ['product' => $product]);
+    }
+
+
 }

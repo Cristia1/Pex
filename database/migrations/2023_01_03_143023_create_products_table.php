@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('details');
-            $table->text('password');
             $table->text('price');
             $table->text('status');
             $table->string('image')->nullable();
