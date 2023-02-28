@@ -1,72 +1,73 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Product;
-use Faker\Guesser\Name;
-use Illuminate\Database\Console\Migrations\StatusCommand;
-use Illuminate\Http\Request;
-use DB;
-use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
-use Illuminate\Pagination\Paginator;
-use Image, File;
+    <?php
 
 
-class ProductController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
-    public function index(Request $requests)
+    use App\Models\Product;
+    use App\Http\Controllers\Controller; 
+    use Faker\Guesser\Name;
+    use Illuminate\Database\Console\Migrations\StatusCommand;
+    use Illuminate\Http\Request;
+    use DB;
+    use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
+    use Illuminate\Pagination\Paginator;
+    use Image, File;
+
+
+    class ProductController extends Controller
     {
+        /**
+         * Display a listing of the resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
 
-        $products = Product::paginate(10);
-        if ($requests->name) {
-            $products = $products
-                ->where('name', 'like', '%' . $requests->name . '%');
+        public function index(Request $requests)
+        {
+
+            $products = Product::paginate(10);
+            if ($requests->name) {
+                $products = $products
+                    ->where('name', 'like', '%' . $requests->name . '%');
+            }
+
+
+            if ($requests->price) {
+                $products = $products
+                    ->where('price', $requests->price);
+            }
+
+            if (($requests->status == 1 || $requests->status == 0) && isset($requests->status)) {
+                $products = $products
+                    ->where('status', $requests->status);
+            }
+
+            $data['product'] = $products;
+
+
+            $data['filter_products'] = DB::table('products')->get();
+
+            $data['filter_product'] = DB::table('products')->get();
+
+
+
+            $data['products'] = DB::table("products")->paginate(20);
+
+            return view('products.index', $data);
+            // ->with('i', (request()->input('page', 1) - 1) * 5);
         }
 
+        /**
+         * Show the form for creating a new resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
 
-        if ($requests->price) {
-            $products = $products
-                ->where('price', $requests->price);
+        public function create()
+        {
+
+
+            return view('products.create');
         }
-
-        if (($requests->status == 1 || $requests->status == 0) && isset($requests->status)) {
-            $products = $products
-                ->where('status', $requests->status);
-        }
-
-        $data['product'] = $products;
-
-
-        $data['filter_products'] = DB::table('products')->get();
-
-        $data['filter_product'] = DB::table('products')->get();
-
-   
-
-        $data['products'] = DB::table("products")->paginate(20);
-
-        return view('products.index', $data);
-        // ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function create()
-    {
-
-
-        return view('products.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -83,7 +84,7 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
-        $input = $request->all();
+            $input = $request->all();
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
@@ -92,7 +93,7 @@ class ProductController extends Controller
             $input['image'] = "$profileImage";
         }
 
-        Product::create($input);
+            Product::create($input);
 
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
