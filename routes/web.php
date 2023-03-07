@@ -1,13 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ImageUploadController;
-use Illuminate\Http\Request;
 /*
-
-
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -17,9 +14,28 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//uite aici ai rutele, nu ai treaba cu ele
+
 Route::resource('products', ProductController::class);
 
 Route::get('/shop', [ProductController::class, 'shop']);
 
 Route::get('/details/{id}', [ProductController::class, 'details'])->name('details');
+
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});

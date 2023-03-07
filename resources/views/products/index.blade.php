@@ -1,10 +1,10 @@
-@extends('products.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Proiectul Meu</h2>
+
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
@@ -53,7 +53,7 @@
             <button class="send" type="submit">Send</button>
             <div>
     </form>
-
+    <br>
     <table class="table table-bordered">
         <tr>
             <th>No</th>
@@ -65,63 +65,71 @@
             <th width="280px">Action</th>
         </tr>
         @php
-        $i = 0;
+            $i = 0;
         @endphp
         @foreach ($product as $product)
             <tr @if ($product->status == 1) class="statusInactiv" @endif>
                 <td>{{ ++$i }}</td>
-                <th><img src="{{ asset('images/'. $product->image) }}" style="width: 100px">
-                    <td>{{ $product->name }}</td>
-                    
-                    <td title="{{ $product->details }}">{{ strlen($product->details)
-                     > 30 ? substr($product->details, 0, 30) . "..." : $product->details }}</td>
+                <th><img src="{{ asset('images/' . $product->image) }}" style="width: 100px">
+                <td>{{ $product->name }}</td>
+                <td>{{ substr($product->details, 0, 3) }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->status }}</td>
+                <th>
 
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->status }}</td>
-                    <th>
+                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-crud"><span>show</span></a>
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-crud"><span>Edit</span></a>
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="btn-crud">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"><span>Delete</span></button>
+                    </form>
 
-                        <form class="form-group" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                            <a class="btn btn-info" id="show" href="{{ route('products.show', $product->id) }}">Show</a>
-                            <a class="btn btn-primary" id="edit"href="{{ route('products.edit', $product->id) }}">Edit</a>
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                        </td>
             </tr>
         @endforeach
     </table>
-
 @endsection
 
 <style>
     .statusInactiv {
         background-color: rgb(40, 225, 213);
+
     }
 
     .price {
-        margin-top: 25px;
+        margin-top: -17px;
         margin-left: 2px;
         float: left;
     }
 
     .name {
-        margin-top: 25px;
+        margin-top: -17px;
         margin-left: 2px;
         float: left;
     }
 
     .status {
-        margin-top: 25px;
+        margin-top: -17px;
         margin-left: 10px;
         float: left;
     }
 
     .send {
         background-color: rgb(238, 196, 12);
-        margin-top: 25px;
+        margin-top: -20px;
         margin-left: 2px;
         float: left;
+    }
+
+    .pull-right {
+        top: 60px;
+        background: red;
+        position: absolute;
+        right: 700px;
+        font-size: 1px;
+    }
+
+    table {
+        width: 100vw;
     }
 </style>

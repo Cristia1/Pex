@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         @foreach ($products as $product)
             <div class="product">
@@ -9,73 +12,143 @@
                 <p class="product-price">{{ $product->price }}</p>
 
                 <div>
-                    <a href="{{ route('details', $product->id) }}" class="product-details">&#9195;Details</a>
+                    <a href="{{ route('details', $product->id) }}" class="product-details"><span>&#9195;Details</span></a>
                 </div>
 
-                <div class="rel"></div>
+                <div class="borderul"></div>
 
                 <div class="emoji">&#128707;&#127804;&#127802;</div>
 
             </div>
         @endforeach
     </div>
-    <style>
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 255px;
+@endsection
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        }
+    .product {
+        width: calc(33.33% - 26px);
+        margin: 10px;
+        text-align: center;
+        margin-top: 40px;
+    }
 
-        .product {
-            width: 259px;
-            margin: 13px;
-            text-align: center;
-            margin-top: -25px;
-        }
+    .product-image {
+        background-color: #cccccc54;
+        height: 150px;
+        padding: 47px;
+        border-radius: 20px;
+        width: 100%;
 
-        .product-image {
-            width: 70px;
-            background-color: #cccccc54;
-            height: 160px;
-            padding: 48px;
-            border-radius: 29px;
-        }
+    }
 
-        .product-name {
-            font-weight: bold;
-            color: red;
-            margin-top: 36px;
-            position: relative;
-            top: -270px;
-        }
+    .product-name {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        position: relative;
+        top: -240px;
+        color: red;
+    }
 
-        div.rel {
-            border-bottom: rgba(221, 223, 211, 0.499) 28px solid;
-            padding: 30px;
-            margin-top: -180px;
-            color: red;
-            width: 210px;
-            height: 1px;
-        }
+    .product-price {
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 16px;
+        color: rgb(139, 12, 77);
+        position: relative;
+        top: -80px;
+    }
 
-        .product-price {
-            color: red;
-            transform: translate(1px, 0);
-            position: relative;
-            top: -105px;
-        }
+    .product-details {
+        display: block;
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+        color: black;
+        position: relative;
+        position: relative;
+        top: -68px;
+        left: 95px;
+        margin-left: -10px;
+    }
+    .borderul {
+        border-bottom: rgba(221, 223, 211, 0.520) 25px solid;
+        padding: 53px;
+        margin-top: -200px;
+    }
 
-        .product-details {
-            position: relative;
-            top: -94px;
-            left: 30%;
-            transform: translate(20px, 0);
-        }
+    .emoji {
+        font-size: 16px;
+        margin-top: 2px;
+        top: -21px;
+        position: relative;
+        left: -108px;
+    }
+</style>
+{{-- <style>
+    .container {
+        display: inline-flex;
+        flex-wrap: wrap;
+        margin-left: 270px;
+        left: 30px;
+    }
 
-        .emoji {
-            position: relative;
-            left: -90px;
-            top: -23px;
-        }
-    </style>
+    .product {
+        width: 270px;
+        margin: 13px;
+        text-align: center;
+        margin-top: 11px;
+        margin-left: 10px;
+        /* adăugați o valoare pozitivă pentru a muta elementul către dreapta */
+    }
+
+
+    .product-image {
+        background-color: #cccccc54;
+        height: 150px;
+        padding: 47px;
+        border-radius: 20px;
+
+    }
+
+    .product-name {
+        font-weight: bold;
+
+        margin-top: 33px;
+
+    }
+
+    div.borderul {
+        border-bottom: rgba(221, 223, 211, 0.520) 28px solid;
+        padding: 41px 137px;
+        margin-top: -200px;
+    }
+
+    .product-price {
+
+        transform: translate(1px, 0);
+
+    }
+
+    .product-details {
+        font-size: 15px;
+        /* schimbați dimensiunea textului aici */
+
+        transform: translate(2px, 3);
+
+    }
+
+
+    .emoji {
+        position: relative;
+
+        top: -23px;
+    }
+</style> --}}
