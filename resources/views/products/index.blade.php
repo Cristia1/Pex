@@ -97,36 +97,35 @@
     }
 
     .price {
-        margin-top: -17px;
+        margin-top: 15px;
         margin-left: 2px;
         float: left;
     }
 
     .name {
-        margin-top: -17px;
+        margin-top: 15px;
         margin-left: 2px;
         float: left;
     }
 
     .status {
-        margin-top: -17px;
+        margin-top: 15px;
         margin-left: 10px;
         float: left;
     }
 
     .send {
         background-color: rgb(238, 196, 12);
-        margin-top: -20px;
+        margin-top: 15px;
         margin-left: 2px;
         float: left;
     }
 
     .pull-right {
-        top: 60px;
-        background: red;
+        top: 110px;
         position: absolute;
         right: 700px;
-        font-size: 1px;
+        font-size: 20px;
     }
 
     table {

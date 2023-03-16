@@ -6,14 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
                  <div class="card-body">
                     Welcome {{ auth()->user()->name }}
-                    <h1>Aceasta pagina este Home</h1>
                 </div>
+                <h1>Aceasta pagina este footer</h1>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@endsection)
 
