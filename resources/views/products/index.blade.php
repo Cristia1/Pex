@@ -12,11 +12,11 @@
         </div>
     </div>
 
-    @if ($message = Session::get('success'))
+    {{-- @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
-    @endif
+    @endif --}}
 
     <form action="{{ route('products.index') }}" method="get">
         <div class="status">
@@ -77,8 +77,8 @@
                 <td>{{ $product->status }}</td>
                 <th>
 
-                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-crud"><span>show</span></a>
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-crud"><span>Edit</span></a>
+                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-crud" style="background: rgb(231, 179, 11)"><span>show</span></a>
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-crud" style="background: rgb(230, 239, 114)"><span>Edit</span></a>
                     <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="btn-crud">
                         @csrf
                         @method('DELETE')
@@ -92,43 +92,79 @@
 
 <style>
     .statusInactiv {
-        background-color: rgb(40, 225, 213);
+        background-color: rgb(148, 244, 237);
 
     }
 
     .price {
-        margin-top: 15px;
+        margin-top: 19px;
         margin-left: 2px;
         float: left;
     }
 
     .name {
-        margin-top: 15px;
+        margin-top: 19px;
         margin-left: 2px;
         float: left;
     }
 
     .status {
-        margin-top: 15px;
-        margin-left: 10px;
+        margin-top: 19px;
+        margin-left: 80px;
         float: left;
     }
 
     .send {
         background-color: rgb(238, 196, 12);
         margin-top: 15px;
-        margin-left: 2px;
+        margin-left: 1px;
         float: left;
     }
 
     .pull-right {
-        top: 110px;
+        top: 85px;
         position: absolute;
-        right: 700px;
-        font-size: 20px;
+        right: 600px;
+        font-size: 200px;
+        margin-left: 100px;
+    }
+
+
+    table {
+        width: 50%;
+        max-width: 1200px;
+        margin: 0 auto;
+
     }
 
     table {
-        width: 100vw;
+        display: table-cell 0px;
+        border-collapse: collapse;
+        width: 10%;
+        margin: 3px 80;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        margin-left: 87px;
     }
+
+    th {
+        background-color: #343a40;
+        color: rgb(179, 13, 13);
+        text-align: center;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    td {
+        border-bottom: 10px solid rgb(226, 213, 213);
+        padding: 10px 100px;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
 </style>

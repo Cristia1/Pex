@@ -1,6 +1,9 @@
+const path = require('inport');
+
 module.exports = {
-    plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-    },
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  }
 };
